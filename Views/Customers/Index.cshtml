@@ -1,0 +1,18 @@
+﻿@model Rentanime.ViewModels.CustomersViewModel
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+<table >
+    <tr>
+        <th>Customer</th>
+    </tr>
+    @foreach (var Customer in Model.Customers)
+    {
+        <tr>
+            <td>@Html.ActionLink(Customer.Name, "Details", "Customers", new { id = Customer.Id },null)</td>
+        </tr>
+    }
+</table>
