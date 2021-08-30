@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Rentanime.Models
 {
-    public class Movie
+    public class Anime
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -1,0 +1,19 @@
+﻿@using Rentanime.Models
+@model Rentanime.ViewModels.AnimeViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Anime</h2>
+<table>
+    <tr>
+        <th>Anime</th>
+    </tr>
+    @foreach(var Anime in Model.AnimeList)
+    {
+        <tr>
+            <td>@Anime.Name</td>
+        </tr>
+    }
+</table>
