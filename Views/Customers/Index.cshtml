@@ -5,14 +5,25 @@
 }
 
 <h2>Customers</h2>
-<table >
-    <tr>
-        <th>Customer</th>
-    </tr>
-    @foreach (var Customer in Model.Customers)
+
+    @if (Model.Customers.Count == 0)
     {
-        <tr>
-            <td>@Html.ActionLink(Customer.Name, "Details", "Customers", new { id = Customer.Id },null)</td>
-        </tr>
+        <p>現在レンタルアニメはまだお客様がありません</p>
     }
-</table>
+    else
+    {
+        <table>
+            <tr>
+                <th>Customer</th>
+            </tr>
+            @foreach (var Customer in Model.Customers)
+            {
+
+            <tr>
+                <td>@Html.ActionLink(Customer.Name, "Details", "Customers", new { id = Customer.Id }, null)</td>
+            </tr>
+
+            }
+        </table>
+    }
+
