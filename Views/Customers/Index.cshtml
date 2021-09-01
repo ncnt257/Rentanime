@@ -16,12 +16,14 @@
 
             <tr>
                 <th>Customer</th>
+                <th>Membership Type</th>
             </tr>
             @foreach (var Customer in Model)
             {
 
                 <tr>
                     <td>@Html.ActionLink(Customer.Name, "Details", "Customers", new {id = Customer.Id}, null)</td>
+                    <td>@Customer.MembershipType.Name</td>
                 </tr>
 
             }

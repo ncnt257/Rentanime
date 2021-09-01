@@ -183,6 +183,14 @@
     <Compile Include="Migrations\202109011045357_PopulateMembershipTypes.Designer.cs">
       <DependentUpon>202109011045357_PopulateMembershipTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202109011123495_Added Name property to MembershipType table.cs" />
+    <Compile Include="Migrations\202109011123495_Added Name property to MembershipType table.Designer.cs">
+      <DependentUpon>202109011123495_Added Name property to MembershipType table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109011124515_Add Name values into MembershipType table.cs" />
+    <Compile Include="Migrations\202109011124515_Add Name values into MembershipType table.Designer.cs">
+      <DependentUpon>202109011124515_Add Name values into MembershipType table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -194,6 +202,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-Rentanime-20210829034713.mdf" />
+    <Content Include="App_Data\aspnet-Rentanime-20210829034713_log.ldf">
+      <DependentUpon>aspnet-Rentanime-20210829034713.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -257,7 +269,6 @@
     <Content Include="Views\Anime\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +290,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109011045357_PopulateMembershipTypes.resx">
       <DependentUpon>202109011045357_PopulateMembershipTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109011123495_Added Name property to MembershipType table.resx">
+      <DependentUpon>202109011123495_Added Name property to MembershipType table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109011124515_Add Name values into MembershipType table.resx">
+      <DependentUpon>202109011124515_Add Name values into MembershipType table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
