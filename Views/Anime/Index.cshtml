@@ -1,5 +1,4 @@
-﻿@using Rentanime.Models
-@model Rentanime.ViewModels.AnimeViewModel
+﻿@model IEnumerable<Rentanime.Models.Anime>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,7 +9,7 @@
     <tr>
         <th>Anime</th>
     </tr>
-    @foreach (var Anime in Model.AnimeList)
+    @foreach (var Anime in Model)
     {
         <tr>
             <td>@Anime.Name</td>

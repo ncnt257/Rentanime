@@ -4,12 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Rentanime.Models;
-using Rentanime.ViewModels;
 
 namespace Rentanime.Controllers
 {
     public class AnimeController : Controller
     {
+        private ApplicationDbContext _context;
+        public AnimeController()
+        {
+            _context = new ApplicationDbContext();
+        }
         // GET: Movies
         public ActionResult Random()
         {
@@ -22,8 +26,8 @@ namespace Rentanime.Controllers
 
         public ActionResult Index()
         {
-            var list = new AnimeViewModel();
-            return View(list);
+            var Animes = _context.Animes.ToList();
+            return View(Animes);
         }
     }
 }
