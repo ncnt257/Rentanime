@@ -12,7 +12,7 @@
     @foreach (var Anime in Model)
     {
         <tr>
-            <td>@Anime.Name</td>
+            <td>@Html.ActionLink(Anime.Name,"Details","Anime",new {id=Anime.Id},null)</td>
         </tr>
     }
 </table>
