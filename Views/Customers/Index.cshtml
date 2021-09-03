@@ -5,28 +5,31 @@
 }
 
 <h2>Customers</h2>
+<p>
+    @Html.ActionLink("Create Customer", "Create", null, new { @class = "btn btn-primary", @style = "color:white" })
 
-    @if (Model.Count() == 0)
-    {
-        <p>現在レンタルアニメはまだお客様がありません</p>
-    }
-    else
-    {
-        <table class="table table-bordered table-hover">
+</p>
+@if (Model.Count() == 0)
+{
+    <p>現在レンタルアニメはまだお客様がありません</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+
+        <tr>
+            <th>Customer</th>
+            <th>Membership Type</th>
+        </tr>
+        @foreach (var Customer in Model)
+        {
 
             <tr>
-                <th>Customer</th>
-                <th>Membership Type</th>
+                <td>@Html.ActionLink(Customer.Name, "Edit", "Customers", new { id = Customer.Id }, null)</td>
+                <td>@Customer.MembershipType.Name</td>
             </tr>
-            @foreach (var Customer in Model)
-            {
 
-                <tr>
-                    <td>@Html.ActionLink(Customer.Name, "Edit", "Customers", new {id = Customer.Id}, null)</td>
-                    <td>@Customer.MembershipType.Name</td>
-                </tr>
-
-            }
-        </table>
-    }
+        }
+    </table>
+}
 

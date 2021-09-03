@@ -1,0 +1,28 @@
+﻿@model Rentanime.ViewModels.AnimeFormViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm("Save", "Anime"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Anime.Name)
+        @Html.TextBoxFor(m => m.Anime.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Anime.ReleasedDate)
+        @Html.TextBoxFor(m => m.Anime.ReleasedDate, "{0: d MMM yyyy}", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Anime.GenreId)
+        @Html.DropDownListFor(m => m.Anime.GenreId, new SelectList(Model.Genres, "Id", "Name"), "Select Genre", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Anime.NumberInStock)
+        @Html.TextBoxFor(m => m.Anime.NumberInStock, new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(m => m.Anime.Id)
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+

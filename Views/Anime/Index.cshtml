@@ -5,14 +5,19 @@
 }
 
 <h2>Anime</h2>
+<p>
+    @Html.ActionLink("Create Anime", "Create", null, new { @class = "btn btn-primary", @style = "color:white" })
+</p>
 <table class="table table-bordered table-hover">
     <tr>
         <th>Anime</th>
+        <th>Genre</th>
     </tr>
     @foreach (var Anime in Model)
     {
         <tr>
-            <td>@Html.ActionLink(Anime.Name,"Details","Anime",new {id=Anime.Id},null)</td>
+            <td>@Html.ActionLink(Anime.Name, "Edit", "Anime", new { id = Anime.Id }, null)</td>
+            <td>@Anime.Genre.Name</td>
         </tr>
     }
 </table>

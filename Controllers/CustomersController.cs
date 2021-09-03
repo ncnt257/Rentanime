@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Rentanime.Models;
 using System.Data.Entity;
+using Rentanime.ViewModels;
 
 namespace Rentanime.Controllers
 {
@@ -55,6 +56,7 @@ namespace Rentanime.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.Title = "Create Customer";
             var viewModel = new CustomerFormViewModel()
             {
                 MembershipTypes = _context.MembershipTypes.ToList()
@@ -63,6 +65,7 @@ namespace Rentanime.Controllers
         }
         public ActionResult Edit(int id)
         {
+            ViewBag.Title = "Edit Customer";
             var viewModel = new CustomerFormViewModel()
             {
                 Customer = _context.Customers.Single(c=>c.Id==id),

@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using Rentanime.Models;
 using System.Data.Entity;
+using System.Data.SqlClient;
+using Rentanime.ViewModels;
 
 namespace Rentanime.Controllers
 {
@@ -27,7 +29,7 @@ namespace Rentanime.Controllers
 
         public ActionResult Index()
         {
-            var animes = _context.Animes.ToList();
+            var animes = _context.Animes.Include(a=>a.Genre).ToList();
             return View(animes);
         }
         
@@ -39,6 +41,48 @@ namespace Rentanime.Controllers
                 return HttpNotFound();
             }
             return View(anime);
+        }
+
+        public ActionResult Save(Anime anime)
+        {
+            if (anime.Id == 0)
+            {
+                anime.DateAdded=DateTime.Now;
+                _context.Animes.Add(anime);
+            }
+            else
+            {
+                var animeInDb= _context.Animes.Single(a => a.Id == anime.Id);
+                animeInDb.Name = anime.Name;
+                animeInDb.ReleasedDate = anime.ReleasedDate;
+                animeInDb.GenreId = anime.GenreId;
+                animeInDb.NumberInStock = anime.NumberInStock;
+                
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            ViewBag.Title = "Edit Anime";
+            var viewModel = new AnimeFormViewModel()
+            {
+                Anime = _context.Animes.Single(a => a.Id == id),
+                Genres = _context.Genres
+            };
+            return View("AnimeForm",viewModel);
+        }
+        public ActionResult Create()
+        {
+            ViewBag.Title = "Create Anime";
+
+            var viewModel = new AnimeFormViewModel()
+            {
+                Genres = _context.Genres
+            };
+            return View("AnimeForm", viewModel);
         }
     }
 }
