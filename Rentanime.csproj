@@ -211,9 +211,14 @@
     <Compile Include="Migrations\202109020936082_Populated Genre.Designer.cs">
       <DependentUpon>202109020936082_Populated Genre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202109030701468_Added validations to Customers and Animes Name.cs" />
+    <Compile Include="Migrations\202109030701468_Added validations to Customers and Animes Name.Designer.cs">
+      <DependentUpon>202109030701468_Added validations to Customers and Animes Name.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\CustomerFormViewModel.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -289,6 +294,7 @@
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Anime\Index.cshtml" />
     <Content Include="Views\Anime\Details.cshtml" />
+    <Content Include="Views\Customers\CustomerForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
@@ -333,6 +339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109020936082_Populated Genre.resx">
       <DependentUpon>202109020936082_Populated Genre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109030701468_Added validations to Customers and Animes Name.resx">
+      <DependentUpon>202109030701468_Added validations to Customers and Animes Name.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

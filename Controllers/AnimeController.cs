@@ -30,7 +30,7 @@ namespace Rentanime.Controllers
             var animes = _context.Animes.ToList();
             return View(animes);
         }
-
+        
         public ActionResult Details(int id)
         {
             var anime = _context.Animes.Include(a=>a.Genre).SingleOrDefault(a => a.Id == id);
