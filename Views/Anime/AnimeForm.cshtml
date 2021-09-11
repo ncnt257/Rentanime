@@ -6,23 +6,33 @@
 <h2>@ViewBag.Title</h2>
 @using (Html.BeginForm("Save", "Anime"))
 {
+    @Html.ValidationSummary(true,"Please fix the following errors")
     <div class="form-group">
         @Html.LabelFor(m => m.Anime.Name)
         @Html.TextBoxFor(m => m.Anime.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Anime.Name)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Anime.ReleasedDate)
         @Html.TextBoxFor(m => m.Anime.ReleasedDate, "{0: d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Anime.ReleasedDate)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Anime.GenreId)
         @Html.DropDownListFor(m => m.Anime.GenreId, new SelectList(Model.Genres, "Id", "Name"), "Select Genre", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Anime.GenreId)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Anime.NumberInStock)
         @Html.TextBoxFor(m => m.Anime.NumberInStock, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Anime.NumberInStock)
     </div>
     @Html.HiddenFor(m => m.Anime.Id)
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
 }
 
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

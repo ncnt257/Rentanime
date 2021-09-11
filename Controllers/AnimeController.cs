@@ -42,35 +42,13 @@ namespace Rentanime.Controllers
             }
             return View(anime);
         }
-
-        public ActionResult Save(Anime anime)
-        {
-            if (anime.Id == 0)
-            {
-                anime.DateAdded=DateTime.Now;
-                _context.Animes.Add(anime);
-            }
-            else
-            {
-                var animeInDb= _context.Animes.Single(a => a.Id == anime.Id);
-                animeInDb.Name = anime.Name;
-                animeInDb.ReleasedDate = anime.ReleasedDate;
-                animeInDb.GenreId = anime.GenreId;
-                animeInDb.NumberInStock = anime.NumberInStock;
-                
-            }
-
-            _context.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         public ActionResult Edit(int id)
         {
             ViewBag.Title = "Edit Anime";
             var viewModel = new AnimeFormViewModel()
             {
                 Anime = _context.Animes.Single(a => a.Id == id),
-                Genres = _context.Genres
+                Genres = _context.Genres.ToList()
             };
             return View("AnimeForm",viewModel);
         }
@@ -80,9 +58,41 @@ namespace Rentanime.Controllers
 
             var viewModel = new AnimeFormViewModel()
             {
-                Genres = _context.Genres
+                Genres = _context.Genres.ToList()
             };
             return View("AnimeForm", viewModel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Anime anime)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Title = anime.Id == 0 ? "Create Anime" : "Edit Anime";
+                var viewModel = new AnimeFormViewModel()
+                {
+                    Anime = anime,
+                    Genres = _context.Genres.ToList()
+                };
+                return View("AnimeForm", viewModel);
+            }
+            if (anime.Id == 0)
+            {
+                anime.DateAdded = DateTime.Now;
+                _context.Animes.Add(anime);
+            }
+            else
+            {
+                var animeInDb = _context.Animes.Single(a => a.Id == anime.Id);
+                animeInDb.Name = anime.Name;
+                animeInDb.ReleasedDate = anime.ReleasedDate;
+                animeInDb.GenreId = anime.GenreId;
+                animeInDb.NumberInStock = anime.NumberInStock;
+
+            }
+
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

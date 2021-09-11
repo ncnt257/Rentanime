@@ -28,6 +28,7 @@ namespace Rentanime.Models
         public DateTime DateAdded { get; set; }
 
         [Display(Name = "Number In Stock")]
+        [NumberInStockBetween1To20]
         public int NumberInStock { get; set; }
     }
 }
