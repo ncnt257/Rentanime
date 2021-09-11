@@ -47,11 +47,14 @@ namespace Rentanime.Controllers
         public ActionResult Edit(int id)
         {
             ViewBag.Title = "Edit Customer";
+            
             var viewModel = new CustomerFormViewModel()
             {
-                Customer = _context.Customers.Single(c=>c.Id==id),
+                Customer = _context.Customers.SingleOrDefault(c=>c.Id==id),
                 MembershipTypes = _context.MembershipTypes.ToList()
             };
+            if (viewModel.Customer == null)
+                return HttpNotFound();
             return View("CustomerForm", viewModel);
         }
         [HttpPost]

@@ -47,9 +47,11 @@ namespace Rentanime.Controllers
             ViewBag.Title = "Edit Anime";
             var viewModel = new AnimeFormViewModel()
             {
-                Anime = _context.Animes.Single(a => a.Id == id),
+                Anime = _context.Animes.SingleOrDefault(a => a.Id == id),
                 Genres = _context.Genres.ToList()
             };
+            if (viewModel.Anime == null)
+                return HttpNotFound();
             return View("AnimeForm",viewModel);
         }
         public ActionResult Create()
