@@ -35,8 +35,19 @@ namespace Rentanime.Controllers
             return View(customer);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes
+                };
+                ViewBag.Title = customer.Id==0 ? "Create Customer": "Edit Customer";
+                return View("CustomerForm", viewModel);
+            }
             if (customer.Id == 0)
             {
                 _context.Customers.Add(customer);
@@ -59,6 +70,7 @@ namespace Rentanime.Controllers
             ViewBag.Title = "Create Customer";
             var viewModel = new CustomerFormViewModel()
             {
+                Customer = new Customer(),//Set CustomerId to default value to avoid it's validation
                 MembershipTypes = _context.MembershipTypes.ToList()
             };
             return View("CustomerForm",viewModel);

@@ -16,6 +16,7 @@ namespace Rentanime.Models
         public string Name { get; set; }
 
         [Display(Name = "Day of Birth")]
+        [Min18IfAMember]
         public DateTime? Birthdate { get; set; }
 
         public bool IsSubscribedToNewsletter { get; set; }
@@ -24,5 +25,10 @@ namespace Rentanime.Models
 
         [Display(Name = "Membership Type")]
         public byte MembershipTypeId { get; set; }
+
+        public static readonly byte Unknown = 0;
+
+        public static readonly byte PayAsYouGo = 1;
+
     }
 }
