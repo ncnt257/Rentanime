@@ -6,7 +6,7 @@
 <h2>@ViewBag.Title</h2>
 @using (Html.BeginForm("Save", "Anime"))
 {
-    @Html.ValidationSummary(true,"Please fix the following errors")
+    @Html.ValidationSummary(true, "Please fix the following errors")
     <div class="form-group">
         @Html.LabelFor(m => m.Anime.Name)
         @Html.TextBoxFor(m => m.Anime.Name, new { @class = "form-control" })

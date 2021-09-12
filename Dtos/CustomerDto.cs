@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using Microsoft.SqlServer.Server;
+using Rentanime.Models;
 
-namespace Rentanime.Models
+namespace Rentanime.Dtos
 {
-    public class Customer
+    public class CustomerDto
     {
         public int Id { get; set; }
 
@@ -15,18 +15,11 @@ namespace Rentanime.Models
         [StringLength(255)]
         public string Name { get; set; }
 
-        [Display(Name = "Day of Birth")]
-        [Min18IfAMember]
+        //[Min18IfAMember]
         public DateTime? Birthdate { get; set; }
 
         public bool IsSubscribedToNewsletter { get; set; }
 
-        public MembershipType MembershipType { get; set; }
-
-        [Display(Name = "Membership Type")]
         public byte MembershipTypeId { get; set; }
-
-        
-
     }
 }

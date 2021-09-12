@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using Rentanime.Models;
 
-namespace Rentanime.Models
+namespace Rentanime.Dtos
 {
-    public class Anime
+    public class AnimeDto
     {
         public int Id { get; set; }
 
@@ -15,20 +16,16 @@ namespace Rentanime.Models
         [StringLength(255)]
         public string Name { get; set; }
 
-        public Genre Genre { get; set; }
-
-        [Display(Name = "Genre")]
         [Required]
         public int GenreId { get; set; }
 
-        [Display(Name = "Released Date")]
         [Column(TypeName = "datetime2")]
         public DateTime ReleasedDate { get; set; }
-       
+
         public DateTime DateAdded { get; set; }
 
-        [Display(Name = "Number In Stock")]
-        [NumberInStockBetween1To20]
         public int NumberInStock { get; set; }
+
+
     }
 }
